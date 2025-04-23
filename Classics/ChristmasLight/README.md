@@ -52,9 +52,6 @@ La grille d'éclairage que vous avez achetée possède en fait des commandes de 
 Ne vous focalisez pas sur les instructions, mais plutôt sur les règles.  
 Lorsque j'allume le rendu est celui-ci, lorsque j'éteins celui-là...
 
-### Solution
-
-Si vous souhaitez voir mes résultats, il vous suffit d'executer [la classe Solution](./Solution.java).
 
 
 Have fun :D 
