@@ -13,7 +13,7 @@ Créez une méthode qui :
  - prend une chaîne de caractères et un dictionnaire
  - remplace chaque clé du dictionnaire pré et suffixée par un signe dollar, par la valeur correspondante du dictionnaire.
 
-## Les 3 tests :
+## Les 3 exemples  :
 
 **Entrée :** “”  
 **Dictionnaire :** empty  
