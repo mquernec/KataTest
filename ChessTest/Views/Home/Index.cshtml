@@ -35,7 +35,7 @@
         axios({
   method: 'post',
     url: '/Home/ValidateMove',
- data:  { 'Move' :'Fred',
+ data:  { 'Move' :Chessboard.objToFen(oldPos)+Chessboard.objToFen(newPos) ,
   'Game' :'aGame'}
 });
 
