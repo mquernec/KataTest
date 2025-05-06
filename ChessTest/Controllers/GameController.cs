@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using ChessTest.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChessTest.Controllers
@@ -7,7 +6,16 @@ namespace ChessTest.Controllers
 [ApiController]
     public class GameController : ControllerBase
     {
-        private static List<string> games = new ();
+        private readonly ILogger<GameController> _logger;
+        private readonly IChessGameService _service;
+        public GameController(ILogger<GameController> logger, IChessGameService service)
+        {
+            _logger = logger;
+            _service = service;
+        }
+
+     
+        private static List<string> games = new();
        [HttpPost]
        [Route("{agame}")]
         public IActionResult Post(string agame)

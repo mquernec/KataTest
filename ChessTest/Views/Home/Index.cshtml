@@ -18,41 +18,22 @@
     draggable: true,
     dropOffBoard: 'trash',
     sparePieces: true,
-    onChange: onChange,
-    onDragStart: onDragStart,
+    position: 'start',
     onDrop: onDrop,
     })
 
     $('#startBtn').on('click', board2.start)
     $('#clearBtn').on('click', board2.clear)
 
-
-    function onChange (oldPos, newPos) {
-        console.log('Position changed:')
-        console.log('Old position: ' + Chessboard.objToFen(oldPos))
-        console.log('New position: ' + Chessboard.objToFen(newPos))
-        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        axios({
-  method: 'post',
-    url: '/Home/ValidateMove',
- data:  { 'Move' :Chessboard.objToFen(oldPos)+Chessboard.objToFen(newPos) ,
-  'Game' :'aGame'}
-});
-
-    }
-
-    function onDragStart (source, piece, position, orientation) {
-        console.log('onDragStart')
-        return true
-    }
-
-    function onDrop (source, target, piece, newPos, oldPos, orientation) {
+   async function  onDrop (source, target, piece, newPos, oldPos, orientation) {
         console.log('onDrop')
-             axios({
+   var res =    await        axios({
   method: 'post',
   url: '/Home/ValidateMove',
-  data:  { 'Move' :'Fred',
-  'Game' :'aGame'}
+  data:  { 
+    'FromFen'  : Chessboard.objToFen(oldPos),
+    'ToFen' : Chessboard.objToFen(newPos),
+    'Game' :'aGame'}
 
   
 });

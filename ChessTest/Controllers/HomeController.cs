@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using ChessTest.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChessTest.Controllers
@@ -7,11 +6,14 @@ namespace ChessTest.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IChessGameService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IChessGameService service)
         {
+            _service = service;
             _logger = logger;
         }
+    
         
         public IActionResult Index()
         {
@@ -20,20 +22,12 @@ namespace ChessTest.Controllers
 
         [HttpPost]
         public IActionResult ValidateMove([FromBody] MoveViewModel aMove)
-        {   Console.WriteLine("ValidateMove");
-            Console.WriteLine(aMove.Move);
-            return Ok();
+        {
+            Console.WriteLine("ValidateMove");
+            if (_service.ValidateMove(aMove.Game, aMove.FromFen, aMove.ToFen))
+                return Ok();
+            return BadRequest("Invalid move.");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
